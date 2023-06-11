@@ -1,0 +1,164 @@
+Install nodejs with default steps only by clicking in next --> next and then finish.
+
+Once the installation finished.
+
+open cmd (command prompt) and execute below mentioned command
+
+>node -v
+>npm -v
+
+to check the versions of node and npm
+----------------------------------------------------
+
+REPL
+
+-- Read evaluate print loop
+
+every time read the data, run it and print the result and continue with the process untill the use exits from the same.
+
+if you want to open node REPL then execute node command in your cmd
+
+you will be able to access REPL now
+
+so enter diffrent values
+>"hellow World"
+>"45+78"
+>89+90
+>56>90
+>89>12
+>89/7
+
+to exit from the same
+press ctrl+c twice.
+
+==========================================================================================
+previously all the JS code which you have written executed in HTML
+
+means my JS scripts embedded with HTML and executed in Browser.
+
+With the help of node we can execute out JS code in our system as server without any browser's help.
+
+How?
+
+we create files with .js extentiona and we will run them in terminal with the help of Node command.
+
+===================================================================================================
+
+How to work with node js project
+
+step 1: whenever you want to create a project, first create a configuration file called package.json
+
+	---> folder name, description, main file name, scripts, author name, version
+	
+	how to create this file?
+
+	--> npm init 
+
+	--> npm init -y
+
+step 2: unserstand npm : node package manager
+
+	npm is a repository having so many bundles of packages available with it.
+
+	npmjs.com is free repository through you can serach all your packages and unserstand how it works.
+
+	> npm install package-name
+
+	>npm i package-name
+
+	once you install the package it will update package.json file too.
+
+	once the package installed successfuly you can see... package-lock.json file and node_modules folder in your project folder.
+
+	>node_modules folder contains all libraries and all the codes which are related to package which you have installed.
+
+	>package-lock.json: it contains the registry locations from where the dependencies downloaded.
+
+If you share your code to someone or upload on git hub repository node module folder was ignored.
+--> if you want to run that project in your system then just execute command npm i
+so it will download all the dependencies based on the locak file and create node_modules folder again.
+
+if lock file was deleted the package.json file can download the new dependies based on the dependencies included in package.json file.
+
+--> it will cretate again new lock file and node_modules folder.
+=====================================================================================
+
+here the dependencies which are installed called local installation some times if you seach on google
+
+you can see the command like
+
+npm install express --save (to install locally)/ npm install express
+
+but with latest version of node: write --save or not write it means same only.
+
+some times if you see --save-dev (depelopment dependencies means its is used for only development purpose not for production)
+
+=========================================================================================
+
+install dependencies globally.
+
+-- npm install nodemon -g 
+
+(it will install the dependency globally, it will install the package in the c drive nodejs folder where you have installed node means that command you can execute any where.)
+
+once it is installed you can execute below command from any location in your system
+>nodemon --version
+
+usually it is not suggested to install packages globally for your projects because if it update everytime, it may impact on your previously created projects.
+
+good practice is install packages locally.
+
+==========================================================================
+
+npm install express (or) npm install express --save
+
+(both are same, perviously we are using save for local installation but after version 14v of node automatically it will install locally)
+
+---------------
+suppose you want use some dependencies only for development like test my code, those dependencies we should install in dev dependencies.
+
+npm install jasmine --save-dev (it will install in development dependencies)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
