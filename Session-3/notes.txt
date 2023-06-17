@@ -1,0 +1,79 @@
+Modules in Node JS:
+-----------------------------------
+they can be simple/ complex which basically combines similar kind of functionalities in one file or combination of multiple files.
+
+create once and reuse it whenever its required.
+
+Modules: diffrent types in NodeJS
+
+1. Local Modules: which we will create by our own
+	that we can simply use to our other files.
+2. Core (In built) Modules: (fs,http, url,path,os)
+   const url=require('url')
+3. Third Party Module:
+	(available on that npmjs.com 
+	we can just download by using npm install command)
+	once it is installed we can use it by including in out pages.
+
+	express, nodemon, mongodb, mongoose, body-parser,bootstrap
+	
+
+============================================================================================
+
+MJS file
+----------------
+module Javascript file
+
+setting up a perfular folder structure and we can do simple emport and export of our modules using .mjs files.
+
+
+How to work with this?
+
+step 1: create package.json file using below command
+	> npm init -y
+
+step 2: create one file called mydata.mjs
+
+	export function displayData(data){
+    	console.log("Following is the Data")
+    	console.log("=============================");
+    	console.log(data)
+	}
+
+	(here we have just exported a function using export keyword)
+
+step 3: create a file called myfile.js (to import mjs file)
+
+	import {displayData} from './mydata.mjs';
+
+	displayData({message:"Welcome to export import concept"})
+
+if you run node myfile.js then it will give you an error called module Not found.
+
+	to resolve this open open package.json file and include "type":"module"
+
+	save and check your output again.
+
+if you dont want to run big commands in terminal you can set scripts in package.json and just run npm scriptname
+
+	"start": "node usefile.js",
+
+	--- run command
+	>npm start
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
