@@ -1,0 +1,69 @@
+How to work with some dummy server to understand API
+------------------------------------------------------------
+
+npm install json-server -g
+
+(install globally)
+
+create file called data.json and paste below mentioned code.
+
+{
+  "users": [
+    {
+      "id": 2,
+      "name": "luv",
+      "email": "luv@gmail.com"
+    },
+    {
+      "id": 3,
+      "name": "Krishna",
+      "email": "krish@gmail.com"
+    }
+  ]
+}
+
+save your file now go to the terminal
+
+execute below command
+
+>json-server data.json
+
+(it will start your json server and you can see in console like use this url to work with apis)
+http://localhost:3000/users
+
+you can open POSTMan tool and check diffrent methods to understand how it works.
+
+get method: http://localhost:3000/users
+
+get method: http://localhost:3000/users/2 (change Ids)
+
+POST method: http://localhost:3000/users
+
+pass json object from raw data
+
+{
+    "id":3,
+    "name":"Krishna"
+}
+
+click on send so it will store this data in your JSON file.
+
+similarly trigger
+
+delete method :http://localhost:3000/users/2
+
+it will delete the object with Id 2
+
+you can see the quick reflection in your JSON file.
+
+
+
+
+
+
+
+
+
+
+
+
