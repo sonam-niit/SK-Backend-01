@@ -1,0 +1,23 @@
+[
+    {
+        "id":1,
+        "name":"Sachin Tendulkar",
+        "profession":"Cricketer"
+    },
+    {
+        "id":2,
+        "name":"Lata Mangeshkar",
+        "profession":"Singer"
+    },
+    {
+        "id":3,
+        "name":"Ajay Devgan",
+        "profession":"Actor"
+    },
+    {
+        "id":4,
+        "name":"Vivek Binra",
+        "profession":"Enterprenure"
+    }
+
+]
