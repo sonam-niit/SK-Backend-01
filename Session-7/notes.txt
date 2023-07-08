@@ -1,0 +1,97 @@
+What are middlewares and their Importance
+-----------------------------------------------------
+
+Create a content seperately and using the same with the help of middleware.
+
+Let's use bodyparser of json parser to read the data from post requst, middleware will convert the data in JSON and then it will pass it to your call back function.
+
+app.use(express.json())
+
+------------------------------------
+
+previosuly we are using middleware like body-parser
+instal> npm i body-parser
+
+import> const bodyparser= require('body-parser');
+	
+	app.post("/", bodyparser.json(),callback);
+
+	//use for all
+
+
+	app.use(bodyparser.json());
+================================================================================
+
+created seperate routing and included as middleware
+
+
+cretae blog_route.js file inside routes folder.
+
+const express= require('express');
+
+const BlogRouter= express.Router();
+
+BlogRouter.get("/",(req,res)=>{
+    res.send("Getting all Blog routes")
+})
+BlogRouter.get("/:id",(req,res)=>{
+    res.send(`Getting only one route with id ${req.params.id}`)
+})
+
+//to use them in seperate files
+module.exports=BlogRouter;
+
+-------------------------------------------------------------------------------
+
+to use it as middle ware include below line in your server.
+
+app.use("/api/blog",require('./routes/blog_routes'))
+
+
+******************************************************************************************
+
+Serving of static files, css and js files
+-----------------------------------------------------------
+
+cretae one folder called reastaurant and create some file inside the same (index.html,styles.css, about.html, bestselling.html)
+
+to load it for perticular path
+
+app.use("/restaurant",express.static("restaurant"))
+---------------------------------------------------------------------------------
+
+Templates Engine:
+----------------------------------
+we can create simple HTMl views from server side using template engines
+
+we can populate out dynamic data in HTML using View Engines.
+
+What are template engines and why to use:
+
+-- pug (previously JADE)
+-- EJS
+-- express handlerbar
+-- dust
+
+How to Render the Data in view.
+
+>npm i pug
+
+set the view engine in your server
+
+app.set('view engine','pug');
+
+by default it will search for the folder named views.
+app.set('views','./myfolder')
+
+
+
+
+
+
+
+
+
+
+
+

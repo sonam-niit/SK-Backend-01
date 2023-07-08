@@ -1,0 +1,144 @@
+Open Mongodb compass:
+---------------------------
+
+click on mongosh (expand your Mongo Shell)
+-------------------------------------------------
+
+by default the selected DB is test
+
+for creating New DB:
+
+>use school  (school is name of my DB)
+
+let's create collection for storing Data
+
+>db.createCollection("students");
+
+For checking the awailable collection in DB you can execute below command
+>show collections;
+
+Checking available Databases
+>show databases;
+
+Storing data in collection:
+
+1. InsertOne: to insert 1 record
+
+	db.students.insertOne({name:"alex",email:"alex@gmail.com",percentage:89.90})
+
+	when it is inserted it will create one unique object with _id key
+
+2. InsertMany: to Insert many records at a time
+	db.students.insertMany([{name:"bob",email:"bob@gmail.com",percentage:67.56},{name:"catty",email:"cat@gmail.com",percentage:56.67}])
+
+	(this query will provide 2 objectId as response)
+
+3. Fetch Data: find() method
+
+4. Findout the user based on its emailId:
+	findOne()
+	db.students.findOne({email:"era@gmail.com"})
+
+5. Update Data:
+
+	updateOne: to update one object
+		db.students.updateOne({name:"era"},{$set:{country:"US"}})
+		(Update a single Recors)
+	updateMany: to update Many Objects
+		db.students.updateMany({name:"alex"},{$set:{country:"UK"}})
+		(Match the student name which is alex and then try to update all matched counts)
+
+
+6. Find Query with some input to fetch related Data.
+
+	db.students.find({country:"UK"})
+
+	---find Data from 2 diffrent countries so for that we can use $in operator
+
+	db.students.find({country:{$in:["UK","India"]}});
+	(This will fetch all the students of UK and India)
+	db.students.find({country:{$nin:["UK","India"]}});
+	(This will fetch all data except UK and India countries.)
+	(nin- not in operator)
+
+6. Use these eq (equal), ne (not Equal) operator:
+
+	db.students.find({name:{$neq:"era"}})
+	(fetch record whoze name is Era)
+	db.students.find({name:{$ne:"era"}})
+	(fetch all records except those whose name is era)
+
+
+7. lt & lte (less than or equal), gt & gte (greater than or equal)
+
+	db.students.find({percentage:{$gt:60}})
+	(get all students whose percentage are greater than 60)
+
+	db.students.find({percentage:{$lt:60}})
+	(get all students whose percentage are less than 60)
+
+	db.students.find({percentage:{$gte:89.9}})
+	(get student whose percentage is 89.9 or more than that)
+
+8. Logical Operation
+	(Combine multiple Conditions)
+
+	we can use $and $or operator
+
+	** find out a person whose percentage is gt 50 and who lives in US
+	** We have used $and operator to combine out conditionand get the data accordingly
+	db.students.find({$and:[{percentage:{$gt:60}},{country:{$eq:"US"}}]})
+
+	db.students.find({$or:[{percentage:{$gt:80}},{country:{$eq:"US"}}]})
+
+	(it will match any one of the condition and get data based on the condition matching)
+	it will fetch data whose percentage is > 80
+	also fetch those data whose country == US
+
+9. Replacement of this query using or
+
+	db.students.find({country:{$in:["UK","India"]}});
+
+	db.students.find({$or:[{country:"UK"},{country:"India"}]})
+
+10. Let's sort these data in ascending order based on their name:
+
+	db.students.find().sort({name:1})
+	(it will sort the data in ascending)
+	db.students.find().sort({name:-1})
+	(-1 means sort then in descending order)
+
+	db.students.find().sort({percentage:-1})
+	(sort based on percentage in descending order)
+
+11. Let's Limit data.
+	
+	db.students.find().limit(2);(show me first 2 records)
+	
+	(I want to get the Topper student)
+
+	db.students.find().sort({percentage:-1}).limit(1);
+
+	(I want to get Last student)
+	db.students.find().sort({percentage:1}).limit(1);
+
+12. Delete Data From Collection:
+
+	DeleteOne:db.students.deleteOne({name:"devid"})
+
+	DeleteMany: db.students.deleteMany({country:"US"})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+
+-- MongoDb is unstructred Database
+-- Document type database
+-- which is storing the information in the form document
+-- The document type can be either JSON/BSON (binary JSON) Format
+-- With help of mongoDB we can simply handle a very big amout of Data.
+
+How the Document looks likes in MongoDb
+-------------------------------------------------
+
+{
+	"book-title":"3 idiots"
+	"author-name":"Chetan Bhagat"
+	"publiched-year":"2000"
+	"keywords":["news","events","3 idiots","story"],
+	"readers":1000000000
+}
+
+(JSON Object which we can store in MongoDB databse)
+
+1 document == 1 JSON Object in MongoDB
+--------------------------------------------------------
+
+SQL VS Document database
+----------------------
+storing the data in the form of tables. When we want to fetch the data we ca fire some queries and we can combine the data from multiple tables as well.
+
+Mongo DB: stores the data in flexible format, 
+
+first object:  (one document
+{
+	"id":1,
+	"name:"sonam"
+}
+
+another Object: (another document)
+{
+	"id":2,
+	"name":"Parth",
+	"email":"parth@gmail.com",
+	"designation":"Senior Business Analyst"
+}
+
+================================================================================================
+
+We can also use mongoDB in local system as well as cloud bases.
+
+1. install mongodb locally and use its as local DB:
+	localhost:27017 
+
+2. For cloud usase you need to create account on mongoDB atlast and then you can make your cluster and start using this live DB or cloud DB.
+
+
+==============================================================================================
+
+2 Most Important Features of MongoDB
+---------------------------------------------
+
+1.  It mongoDb
+
+	we can create Database,
+	in each database create collections
+	in each collection i can store multiple documents
+2. when every time you insert a document in Database it will generate one unique ID  which is primary key of 	that document. its name is (_id)
+	if you store your data with this variable then it will not create but if you will without it then it 	will cretae this unique ID.
+
+3.DB Replication:
+
+4. DB Sharding
+=======================================================================================
+
+Download MongoDB
+-------------------------
+https://www.mongodb.com/try/download/community
+
+click on select package button
+
+select the proper platform and version and type the file you want to download and then click the download button.
+
+Once It is downloaded just click on Next next and then finish.
+
+While installing mongoDB it will ask you to download mongoDB compass that also you install to use this tool for Database Usage.
+
+
+
+
+
+
+
+
+
+
+
