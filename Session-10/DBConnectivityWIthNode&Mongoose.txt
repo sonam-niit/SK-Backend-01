@@ -1,0 +1,169 @@
+Just for understading aDB connectivity
+--------------------------------------------------
+
+create package.json file (npm init -y)
+install mongoose
+
+npm install mongoose
+
+create one db.js file
+---------------------------
+//Included Dependency Of mongoose
+const mongoose= require('mongoose');
+const dbURL="mongodb://127.0.0.1:27017/school"
+
+mongoose.connect(dbURL)
+.then(()=>console.log("Connected"))
+.catch((err)=>{console.log(err)})
+
+-------------------------------------------------
+
+checked DB connected or not
+
+URL: mongodb://localhost:27017/school
+
+but if you are geeting any db connectivit error than replace localhost with its ip addess 127.0.0.1
+
+Now We want do Diffrent Types of CRUD Operation 
+-- to make it more structutred
+
+create a seperate file called model.js
+-----------------------------------------
+const mongoose= require('mongoose');
+const schema= mongoose.Schema({
+    name:String,
+    email:String,
+    percentage:Number,
+    country:String
+});
+const Student= mongoose.model('Student',schema);
+
+module.exports=Student;
+
+----------------------------------------------------
+
+For Doing insert and fetch Data created seperated method in seperate file (users.js)
+
+const Student= require('./model');
+const addUser = () => {
+    const newStudent = new Student({
+        name: "John",
+        email: "john@gmail.com",
+        percentage: 67.89,
+        country: "Indonesia"
+    })
+    newStudent.save()
+        .then((resp) => console.log("Student Created", resp))
+        .catch((err) => console.log("Error", err))
+}
+
+const getAllUSers = () => {
+
+    Student.find()
+        .then((resp) => console.log(resp))
+        .catch((err) => console.log(err))
+}
+
+const getUserById=(id)=>{
+    Student.findById(id)
+    .then((user)=>console.log(user))
+    .catch((err)=>console.log(err))
+}
+
+module.exports={addUser,getAllUSers,getUserById}
+
+_______________________________________________________________________
+
+To call these functions update db.js file as below
+
+//Included Dependency Of mongoose
+const mongoose= require('mongoose');
+const { getAllUSers, getUserById } = require('./users');
+const dbURL="mongodb://127.0.0.1:27017/school"
+
+mongoose.connect(dbURL)
+.then(()=>console.log("Connected"))
+.catch((err)=>{console.log(err)})
+
+//addUser();
+//getAllUSers();
+//getUserById("64aae2a14efed5e3d73a40b3");
+//Pass ID which is available in your MongoDB Collection
+
+
+
+------------------------------------------------------------------------------
+update user.js file with below code (if user not found then)
+const getUserById=(id)=>{
+    Student.findById(id)
+    .then((user)=>{
+        if(user!=null){
+            console.log(user)
+        }else{
+            console.log("No User Found for this Id")
+        }
+    })
+    .catch((err)=>console.log(err))
+}
+==============================================================================
+
+
+//Create Function for update User 
+
+const updateUserById=(id,obj)=>{
+    Student.findByIdAndUpdate(id,obj)
+    .then((resp)=>{
+        if(resp!=null){
+            console.log("User Updated Successfullly",resp)
+        }else{
+            console.log("No user FOund for Update")
+        }
+    })
+    .catch((err)=>console.log(err))
+}
+//Function Delete User
+const deleteUser=(id)=>{
+    Student.findByIdAndDelete(id)
+    .then((resp)=>{
+        if(resp!==null){
+            console.log("User Deleted Successfully")
+        }else{
+            console.log("No User available for Delete")
+        }
+    })
+}
+
+//New functions must be exported from your file.
+module.exports={addUser,getAllUSers,getUserById,updateUserById,deleteUser}
+
+Call then in db.json by importing the same.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
