@@ -1,0 +1,244 @@
+REST API using Node,Express & Mongoose
+--------------------------------------------
+1. create Package.json file
+>npm init -y
+2. install all required packages.
+>npm i express mongoose nodemon
+(it will create package lock file and node_modules folder)
+3. Express Server with Basic Details
+
+	create one file server.js and add below mentioned code.
+
+	const express= require('express');
+
+const app= express();
+app.use(express.json())//Json Parser for Reading JSON data coming from Frontend
+
+app.get("/",(req,res)=>{
+    res.status(200).send("Server is running correctly")
+})
+
+app.listen(5000,(err)=>{
+    if(err){
+        console.log("Error Occured",err)
+    }else{
+        console.log("Server Started on Port No 5000")
+    }
+})
+
+Save the File and check by executing below command
+>node server.js (check in the browser localhost:5000)
+
+Step 4: For Restrat server automatically use nodemon, for that open package.json and include the script
+
+ "scripts": {
+    "start":"nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+After the saving same execute below command
+
+>npm start
+
+
+Step 5: Let's Implement Router (create directory called routes and create one file user_routes.js)
+
+const express= require('express');
+
+const router= express.Router();
+
+router.get("/",(req,res)=>{
+    res.status(200).send("Get All Users API called")
+})
+
+router.post("/",(req,res)=>{
+    res.status(201).send("Object Created")
+})
+
+module.exports=router;
+
+Step 6: Include this router in server.js file (include as middle ware)
+	app.use("/api/user",require("./routes/user_routes"));
+
+Step 7: DB Connectivity created one config.js in model folder
+
+	const mongoose= require('mongoose');
+
+mongoose.connect("mongodb://127.0.0.1:27017/usermanagement")
+.then((resp)=>console.log("Connected"))
+.catch((err)=>console.log("Error: ",err))
+
+Step 8: Create one model for the USer inside model directory (user.js)
+
+	const mongoose= require('mongoose');
+
+let UserSchema= new mongoose.Schema({
+    fname:{
+        type:String,
+        required:true,
+        max:100
+    },
+    lname:{
+        type:String,
+        required:true,
+        max:100
+    },
+    email:{
+        type:String,
+        required:true,
+    },
+    password:{
+        type:String,
+        required:true,
+    },
+    age:{
+        type:Number
+    }
+})
+
+//export the Model
+module.exports= mongoose.model("User",UserSchema);
+
+Step 9: created one controller called user_controller.js inside controller folder
+
+const UserModel= require("../model/user");
+
+const getAllUser=async (req,res)=>{
+    try {
+        const users =await UserModel.find();
+        console.log(users);
+        res.status(200).json(users)
+    } catch (error) {
+        res.send(error)
+    }
+}
+
+const addNewUser= async(req,res)=>{
+    const {fname,lname,email,password,age}=req.body;
+    var user= new UserModel();
+    user.fname=fname;
+    user.lname=lname;
+    user.email= email;
+    user.password=password;
+    user.age= age;
+
+    try {
+        const resp = await user.save();
+        res.status(201).json(resp);
+    } catch (error) {
+        res.send(error)
+    }
+}
+
+module.exports= {getAllUser,addNewUser}
+
+
+Step 10: Used this controller file inside routes file.
+
+const express= require('express');
+const { getAllUser, addNewUser } = require('../controller/user_controller');
+
+const router= express.Router();
+
+router.get("/",getAllUser)
+
+router.post("/",addNewUser)
+
+module.exports=router;
+
+Step 11: Include DB connectivity in Server.js
+
+const connection= require("./model/config")
+
+After This Open postman and check with below apis
+
+POST: localhost:5000/api/user
+
+	{
+    "fname":"nikunj",
+    "lname":"soni",
+    "email":"nikunj@gmail.com",
+    "password":"nikunj@123",
+    "age":56
+}
+
+Check Get: localhost:5000/api/user
+
+
+Just like that add other methods for update , getById and delete and execute APIs accordingly.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
