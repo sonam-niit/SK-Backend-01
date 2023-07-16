@@ -1,0 +1,13 @@
+For Image Upload we will use multer package which is available on npmjs.com and then we will do file upload.
+
+npm i express multer nodemon mongoose cors
+
+install express: creating APIs
+
+multer: image upload
+
+nodemon: restrating server automatically
+
+mongoose: DB connectivity.
+
+cors: cross origin resourse sharing (to access our backend from Frontend like React)
