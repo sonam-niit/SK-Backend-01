@@ -1,0 +1,115 @@
+In browser we can store
+
+session storage
+local storage
+cookie storage
+
+What is Cookies?
+-----------------------
+
+Cookies are small text files which is stored in your browser. 
+
+Cookies we can store in the form of key-value pair.
+
+Types Cookies
+-----------------
+
+--Session Cookies: store user's info for short period, when session end values deleted.
+
+--Persistent Cookies: cookies doen't have any exipiry date. it is saved in the server
+for the administrator
+
+--Secore Cookies:encrypted values we can store as cookies to save the data from hackers.
+
+Third-Party-Cookies: Used by the websites for showing the ads or traffic on the website.
+
+========================================================================================
+
+How to use cookies
+--------------------------
+create pcakage.jso file
+install nodemon express 
+and create express server start on port 5000.
+
+//set Cookies
+app.get("/set-cookie",(req,res)=>{
+    res.cookie('username',
+    'sonamsoni',
+    {
+        maxAge:24*60*60*1000 //cookie will expire after 1 day
+    });
+    res.send('Cookie Set');
+})
+
+
+Start your application and check this link in browser
+http://localhost:5000/set-cookie
+
+to check cookies is browser --> inspect element --> application --> cookies--> select your App URL and check
+cookie details
+
+
+How to Read This Cookies
+--------------------------------
+use req.cookies Object
+
+install cookie-parser package
+
+npm install cookie-parser
+import that and set it as middleware.
+
+const cookieparser= require('cookie-parser')
+
+app.use(cookieparser())
+
+//Read cookies using req.cookies object
+
+app.get('/read-cookies',(req,res)=>{
+    const username= req.cookies.username;
+    res.send(`Hello ${username}`);
+})
+
+//Delete Cookies
+app.get("/delete-cookie",(req,res)=>{
+    res.clearCookie('username');
+    res.send('Cookie Deleted Successfully');
+})
+
+Also check in browser cookies storage so you can see the cookie deleted successfully from cookie location.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
