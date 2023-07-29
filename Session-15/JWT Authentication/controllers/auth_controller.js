@@ -1,5 +1,8 @@
-const UserModel = require('../models/user')
-const bcrypt= require("bcrypt")
+const UserModel = require('../models/user_model')
+const bcrypt= require("bcrypt");
+const jwt= require('jsonwebtoken');
+const dotenv= require('dotenv');
+dotenv.config();
 
 const register = async (req, res) => {
     const { name, email, username, password } = req.body;
@@ -48,20 +51,22 @@ const login = async (req, res) => {
         username:user.username
     }
     if(match){
-        res.cookie('userId',user._id,{maxAge:24*60*60*1000})
+        //res.cookie('userId',user._id,{maxAge:24*60*60*1000})
+        //Generate Token
+        const jwtToken=jwt.sign(payload,process.env.JWT_SECRET);
+        res.cookie('jwt',jwtToken,{maxAge:24*60*60*1000})
         res.status(200)
-          .json({message:"Login Successfull",userDetails:payload})
+          .json({message:"Login Successfull",token:jwtToken,userDetails:payload})
     }else{
         return res.status(400)
           .json({ message: "invalid Credentials" })
     }
 }
-const logout=async(req,res)=>{
-    res.clearCookie('userId')
-    res.status(200)
-      .json({message:"Logout Successfull"})
+const logout=(req,res)=>{
+    //clear toke from cokkies
+    res.clearCookie('jwt');
+    res.json({message:"User Logged Out Successfully"})
 }
-
 
 module.exports = {
     register,

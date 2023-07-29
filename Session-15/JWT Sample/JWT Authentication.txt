@@ -1,0 +1,27 @@
+JWT
+--------
+JSON WEB Token
+
+Authentication option using that we can authenticate the user and we can generate some token from the same.
+
+npm i jsonwebtoken
+
+-------------------------------------------------------------------
+
+const jwt= require('jsonwebtoken');
+
+to generate token we required a secret key
+
+const secretkey="ThisisSonamSoniandMyprojectisautheticated"
+
+to generate key we will use function which is 
+jwt.sign(user,secretKey)
+
+send this token as response.
+=================================================================================
+create express server
+
+create one route for login
+if username and passwords are valid then create token and send the token as response
+
+to verify the token you can pass token with another request and if its valid then only allow the user to access the perticular profile page or any other protected routes.
